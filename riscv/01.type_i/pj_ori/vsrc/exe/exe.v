@@ -33,10 +33,40 @@ module exe(
                             reg_waddr_o = reg_waddr_i;
                             reg_wdata_o = op1_i | op2_i;
                         end//ORI
+                        `INST_ADDI: begin
+                            reg_waddr_o = reg_waddr_i;
+                            reg_wdata_o = op1_i + op2_i;
+                        end//ADDI
+                        `INST_SLTI: begin
+                            reg_waddr_o = reg_waddr_i;
+                            reg_wdata_o = ($signed(op1_i) < $signed(op2_i)) ? 32'd1 : 32'd0;;
+                        end//SLTI
+                        `INST_SLTIU: begin
+                            reg_waddr_o = reg_waddr_i;
+                            reg_wdata_o = ($unsigned(op1_i) < $unsigned(op2_i)) ? 32'd1 : 32'd0;
+                        end//SLTIU
+                        `INST_XORI: begin
+                            reg_waddr_o = reg_waddr_i;
+                            reg_wdata_o = op1_i ^ op2_i;
+                        end//XORI
+                        `INST_ANDI: begin
+                            reg_waddr_o = reg_waddr_i;
+                            reg_wdata_o = op1_i & op2_i;
+                        end//ANDI
+                        3'b001: begin
+                            reg_waddr_o = reg_waddr_i;
+                            reg_wdata_o = op1_i << op2_i;
+                        end//XORI
+                        3'b101: begin
+                            reg_waddr_o = reg_waddr_i;
+                            if(inst_i[30]) begin reg_wdata_o = op1_i >>> op2_i;
+                            end else begin reg_wdata_o = op1_i >> op2_i;
+                            end
+                        end//ANDI
                         default: begin
                             reg_waddr_o = `ZERO_REG;
-                            reg_wdata_o = `ZERO;
-			    reg_we_o = `WRITE_DISABLE;
+                            reg_wdata_o = funct3;
+			                reg_we_o = `WRITE_DISABLE;
                         end//default
                     endcase
 		end
@@ -46,6 +76,7 @@ module exe(
                         reg_we_o = `WRITE_DISABLE;
                 end 
             endcase
+
         end //if
     end //always
 

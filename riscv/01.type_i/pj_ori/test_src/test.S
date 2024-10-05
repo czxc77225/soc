@@ -1,11 +1,25 @@
 .org 0x0
 .global _start
 _start:
-    ori x5, x5, 1
-    ori x1, x5, 2
-    ori x2, x5, 4
-    ori x3, x5, 8
-    ori x4, x5, 16
-#    ori x2, x4, 0x4
-#    ori x7, x4, 0x2
+    ori x1, x0, 10
+
+    addi x2, x0, 200
+
+    slti x3, x0, -2 
+
+    sltiu x4, x0, -2
+
+    andi x5, x1, 7
+
+    slli x6, x1, 2
+
+    srli x7, x2, 2
+
+    srai x8, x2, 3  
+
+    xori x9, x2, 10
     
+    nop
+
+
+

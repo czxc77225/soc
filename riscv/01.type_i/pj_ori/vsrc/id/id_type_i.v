@@ -32,6 +32,76 @@ module id_type_i(
 	        op1_o = reg1_rdata_i;
 	        op2_o = {{20{inst_i[31]}}, inst_i[31:20]};
             end
+        `INST_ADDI: begin
+	        reg_we_o = `WRITE_ENABLE;
+               	reg_waddr_o = rd;
+	        reg1_raddr_o = rs1;
+	        reg2_raddr_o = `ZERO_REG;
+               	reg1_re_o = `READ_ENABLE;
+               	reg2_re_o = `READ_DISABLE;
+	        op1_o = reg1_rdata_i;
+	        op2_o = {{20{inst_i[31]}}, inst_i[31:20]};
+            end
+        `INST_SLTI: begin
+	        reg_we_o = `WRITE_ENABLE;
+               	reg_waddr_o = rd;
+	        reg1_raddr_o = rs1;
+	        reg2_raddr_o = `ZERO_REG;
+               	reg1_re_o = `READ_ENABLE;
+               	reg2_re_o = `READ_DISABLE;
+	        op1_o = reg1_rdata_i;
+	        op2_o = {{20{inst_i[31]}}, inst_i[31:20]};
+            end
+        `INST_SLTIU: begin
+	        reg_we_o = `WRITE_ENABLE;
+               	reg_waddr_o = rd;
+	        reg1_raddr_o = rs1;
+	        reg2_raddr_o = `ZERO_REG;
+               	reg1_re_o = `READ_ENABLE;
+               	reg2_re_o = `READ_DISABLE;
+	        op1_o = reg1_rdata_i;
+	        op2_o = {{20{inst_i[31]}}, inst_i[31:20]};
+            end
+        `INST_XORI: begin
+	        reg_we_o = `WRITE_ENABLE;
+               	reg_waddr_o = rd;
+	        reg1_raddr_o = rs1;
+	        reg2_raddr_o = `ZERO_REG;
+               	reg1_re_o = `READ_ENABLE;
+               	reg2_re_o = `READ_DISABLE;
+	        op1_o = reg1_rdata_i;
+	        op2_o = {{20{inst_i[31]}}, inst_i[31:20]};
+            end
+        `INST_ANDI: begin
+	        reg_we_o = `WRITE_ENABLE;
+               	reg_waddr_o = rd;
+	        reg1_raddr_o = rs1;
+	        reg2_raddr_o = `ZERO_REG;
+               	reg1_re_o = `READ_ENABLE;
+               	reg2_re_o = `READ_DISABLE;
+	        op1_o = reg1_rdata_i;
+	        op2_o = {{20{inst_i[31]}}, inst_i[31:20]};
+            end
+        3'b001: begin
+	        reg_we_o = `WRITE_ENABLE;
+               	reg_waddr_o = rd;
+	        reg1_raddr_o = rs1;
+	        reg2_raddr_o = `ZERO_REG;
+               	reg1_re_o = `READ_ENABLE;
+               	reg2_re_o = `READ_DISABLE;
+	        op1_o = reg1_rdata_i;
+	        op2_o = {27'b0, inst_i[24:20]};
+            end
+        3'b101: begin
+	        reg_we_o = `WRITE_ENABLE;
+               	reg_waddr_o = rd;
+	        reg1_raddr_o = rs1;
+	        reg2_raddr_o = `ZERO_REG;
+               	reg1_re_o = `READ_ENABLE;
+               	reg2_re_o = `READ_DISABLE;
+	        op1_o = reg1_rdata_i;
+	        op2_o = {27'b0, inst_i[24:20]};
+            end
             default:begin
                 reg1_raddr_o = `ZERO_REG;
                 reg2_raddr_o = `ZERO_REG;

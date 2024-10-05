@@ -8,6 +8,6 @@ output sum, c_out);
     xor g2(sum, s1, c_in);
     and g3(c1, a,b);
     and g4(c2, s1, c_in) ;
-    xor g5(c_out, c2, c1) ;
+    or g5(c_out, c2, c1) ;
 
 endmodule
