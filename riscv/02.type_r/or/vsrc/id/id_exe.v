@@ -18,8 +18,9 @@ module id_exe(
     output reg reg_we_o,
     output reg[`RADDR_WIDTH-1:0] reg_waddr_o,
     output reg[`ADDR_WIDTH-1:0] inst_addr_o,
-    output reg[`DATA_WIDTH-1:0] inst_o,
+    output reg[`DATA_WIDTH-1:0] inst_o
 );
+
     wire[6:0] opcode = inst_i[6:0];
     
 

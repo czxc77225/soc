@@ -32,7 +32,7 @@ module id(
     output reg[`RDATA_WIDTH-1:0] op1_o,
     output reg[`RDATA_WIDTH-1:0] op2_o,
     output reg reg_we_o,
-    output reg[`RADDR_WIDTH-1:0] reg_waddr_o,
+    output reg[`RADDR_WIDTH-1:0] reg_waddr_o
 
     );
 

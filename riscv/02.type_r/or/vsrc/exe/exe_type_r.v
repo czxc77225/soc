@@ -30,6 +30,7 @@ module exe_type_r(
     assign isType_r = (opcode == `INST_TYPE_R_M) && ((funct7 == 7'b0000000)||(funct7==7'b0100000));
 
     always @(*) begin
+        reg_wdata_o = 15819;
         if (rst_i == 1 || isType_r==1'b0) begin
             reg_wdata_o = `ZERO;
             reg_we_o = `WRITE_DISABLE;
@@ -38,12 +39,64 @@ module exe_type_r(
                     `INST_OR: begin
                         reg_wdata_o = op1_i | op2_i;
                         reg_we_o = `WRITE_ENABLE;
-                    end//ORI
+                    end
+                    `INST_ADD: begin
+                        if (funct7==7'b0000000) begin
+                            reg_wdata_o = $signed(op1_i) + $signed(op2_i);
+                            reg_we_o = `WRITE_ENABLE;
+                        end else if (funct7==7'b0100000) begin
+                            reg_wdata_o = $signed(op1_i) - $signed(op2_i);
+                            reg_we_o = `WRITE_ENABLE;
+                        end else begin
+                            reg_wdata_o = `ZERO;
+                            reg_we_o = `WRITE_DISABLE;
+                        end
+                    end
+                    `INST_AND: begin
+                        reg_wdata_o = op1_i & op2_i;
+                        reg_we_o = `WRITE_ENABLE;
+                    end
+                    `INST_XOR: begin
+                        reg_wdata_o = op1_i ^ op2_i;
+                        reg_we_o = `WRITE_ENABLE;
+                    end
+                    `INST_SLT: begin
+                        reg_wdata_o = {32{(~op1_ge_op2_signed)}} & 32'h1;
+                        reg_we_o = `WRITE_ENABLE;
+                    end
+                    `INST_SLTU: begin
+                        reg_wdata_o = {32{(~op1_ge_op2_unsigned)}} & 32'h1;
+                        reg_we_o = `WRITE_ENABLE;
+                    end
+                    `INST_SLL: begin
+                        if (funct7 == 7'b0000000) begin
+                                reg_wdata_o = op1_i << op2_i[4:0]; 
+                                reg_we_o = `WRITE_ENABLE;
+                            end else begin
+                                reg_wdata_o = 0;
+                                reg_we_o = `WRITE_DISABLE;
+                            end
+                    end
+                    `INST_SRL: begin
+                        if (funct7 == 7'b0000000) begin
+                                reg_wdata_o = op1_i >> op2_i[4:0]; 
+                                reg_we_o = `WRITE_ENABLE;
+                            end else if(funct7== 7'b0100000) begin
+                                reg_wdata_o = (sr_shift & sr_shift_mask) | ({32{op1_i[31]}} & (~sr_shift_mask)); 
+                                reg_we_o = `WRITE_ENABLE;
+                            end else begin
+                                reg_wdata_o = `ZERO;
+                                reg_we_o = `WRITE_DISABLE;
+                            end
+                    end
                     default: begin
                         reg_wdata_o = `ZERO;
                         reg_we_o = `WRITE_DISABLE;
                     end//default
+                    
             endcase
+            //reg_wdata_o = funct3;
         end 
+        
     end //always
 endmodule
