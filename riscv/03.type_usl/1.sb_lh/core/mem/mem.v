@@ -60,6 +60,75 @@ module mem(
                     end
                     endcase      
                 end
+                `LH: begin
+                    ram_ce_o = `CHIP_ENABLE;
+                    if (ram_addr_offset==2'b00) begin
+                        reg_wdata_o = {{16{ram_data_i[15]}}, ram_data_i[15:0]};
+                    end else if(ram_addr_offset==2'b10) begin
+                        reg_wdata_o = {{16{ram_data_i[31]}}, ram_data_i[31:16]};
+                    end else 
+                        reg_wdata_o = `ZERO;
+                end
+                `LW: begin
+                    ram_ce_o = `CHIP_ENABLE;
+                    reg_wdata_o = ram_data_i;
+                end
+                `LBU:begin
+                    ram_ce_o = `CHIP_ENABLE;
+                    case (ram_addr_offset)
+                        2'b00: begin
+                            reg_wdata_o = {24'h0, ram_data_i[7:0]};
+                        end
+                        2'b01: begin
+                            reg_wdata_o = {24'h0, ram_data_i[15:8]};
+                        end
+                        2'b10: begin
+                            reg_wdata_o = {24'h0, ram_data_i[23:16]};
+                        end
+                        default: begin
+                            reg_wdata_o = {24'h0, ram_data_i[31:24]};
+                        end
+                    endcase   
+                end
+                `LHU:begin
+                    ram_ce_o = `CHIP_ENABLE;
+                    if (ram_addr_offset == 2'b0) begin
+                        reg_wdata_o = {16'h0, ram_data_i[15:0]};
+                    end else if (ram_addr_offset == 2'b10) begin
+                        reg_wdata_o = {16'h0, ram_data_i[31:16]};
+                    end else
+                        reg_wdata_o = `ZERO;
+                end 
+                `SB: begin
+                    ram_ce_o = `CHIP_ENABLE;
+                    case (ram_addr_offset)
+                    2'b00: begin
+                        ram_data_o = {ram_data_i[31:8],mem_data_i[7:0]};
+                    end
+                    2'b01: begin
+                        ram_data_o = {ram_data_i[31:16],mem_data_i[7:0], ram_data_i[7:0]};
+                    end
+                    2'b10:begin
+                        ram_data_o = {ram_data_i[31:24],mem_data_i[7:0], ram_data_i[15:0]};
+                    end
+                    default:begin
+                        ram_data_o = {mem_data_i[7:0], ram_data_i[23:0]};
+                    end
+                    endcase
+                end
+                `SH: begin
+                    ram_ce_o = `CHIP_ENABLE;
+                    if (ram_addr_offset == 2'b00) begin
+                        ram_data_o = {ram_data_i[31:16],mem_data_i[15:0]};
+                    end else if(ram_addr_offset == 2'b10) begin
+                        ram_data_o = {mem_data_i[15:0], ram_data_i[15:0]};
+                    end else
+                        ram_data_o = `ZERO;
+                end
+                `SW: begin
+                    ram_ce_o = `CHIP_ENABLE;
+                    ram_data_o = mem_data_i;
+                end
                 default: begin
                     reg_wdata_o = reg_wdata_i;
                 end
@@ -102,6 +171,19 @@ module mem(
                     end
                     endcase      
                 end
+                `LH: begin
+                    ram_ce_o = `CHIP_ENABLE;
+                    if (ram_addr_offset==2'b00) begin
+                        reg_wdata_o = {{16{ram_data_i[15]}}, ram_data_i[15:0]};
+                    end else if(ram_addr_offset==2'b10) begin
+                        reg_wdata_o = {{16{ram_data_i[31]}}, ram_data_i[31:16]};
+                    end else 
+                        reg_wdata_o = `ZERO;
+                end
+                `LW: begin
+                    ram_ce_o = `CHIP_ENABLE;
+                    reg_wdata_o = ram_data_i;
+                end
                 `SB: begin
                     ram_ce_o = `CHIP_ENABLE;
                     case (ram_addr_offset)
@@ -118,6 +200,45 @@ module mem(
                         ram_data_o = {mem_data_i[7:0], ram_data_i[23:0]};
                     end
                     endcase
+                end
+                `LBU:begin
+                    ram_ce_o = `CHIP_ENABLE;
+                    case (ram_addr_offset)
+                        2'b00: begin
+                            reg_wdata_o = {24'h0, ram_data_i[7:0]};
+                        end
+                        2'b01: begin
+                            reg_wdata_o = {24'h0, ram_data_i[15:8]};
+                        end
+                        2'b10: begin
+                            reg_wdata_o = {24'h0, ram_data_i[23:16]};
+                        end
+                        default: begin
+                            reg_wdata_o = {24'h0, ram_data_i[31:24]};
+                        end
+                    endcase   
+                end
+                `LHU:begin
+                    ram_ce_o = `CHIP_ENABLE;
+                    if (ram_addr_offset == 2'b0) begin
+                        reg_wdata_o = {16'h0, ram_data_i[15:0]};
+                    end else if (ram_addr_offset == 2'b10) begin
+                        reg_wdata_o = {16'h0, ram_data_i[31:16]};
+                    end else
+                        reg_wdata_o = `ZERO;
+                end 
+                `SH: begin
+                    ram_ce_o = `CHIP_ENABLE;
+                    if (ram_addr_offset == 2'b00) begin
+                        ram_data_o = {ram_data_i[31:16],mem_data_i[15:0]};
+                    end else if(ram_addr_offset == 2'b10) begin
+                        ram_data_o = {mem_data_i[15:0], ram_data_i[15:0]};
+                    end else
+                        ram_data_o = `ZERO;
+                end
+                `SW: begin
+                    ram_ce_o = `CHIP_ENABLE;
+                    ram_data_o = mem_data_i;
                 end
                 default: begin
                     ram_addr_o = `ZERO;

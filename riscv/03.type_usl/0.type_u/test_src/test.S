@@ -1,36 +1,16 @@
-.org 0x0
-.global _start
+# 範例程式碼使用 RV32I 指令集的四個基本指令 (LUI, AUIPC, JAL, JALR)
+
+    .text                    # 定義程式碼段的開始
+    .global _start           # 定義全局標籤 _start 作為程序入口
+
 _start:
-    ori x1, x0, 10
+    # 範例 1: LUI (Load Upper Immediate)
+    lui x10, 0x12345         # 將立即數 0x12345 載入寄存器 x10 的高 20 位
+                             # 最終 x10 的值為 0x12345000
 
-    addi x2, x0, 200
+    # 範例 2: AUIPC (Add Upper Immediate to PC)
+    auipc x11, 0x2           # 將立即數 0x2 載入並加到當前的 PC（程序計數器），結果存入寄存器 x11
+                             # 最終 x11 的值為 PC + (0x2 << 12)
 
-    
 
-
-    add x10, x1, x2        # x10 = x1 + x2
-
-    sub x11, x2, x1        # x11 = x2 - x1
-
-    slt x12, x1, x2        # x12 = (x1 < x2) ? 1 : 0
-
-    sltu x13, x1, x2       # x13 = (x1 < x2) 
-
-    and x14, x2, x2        # x14 = x1 & x2
-
-    or x15, x1, x1         # x15 = x1 | x2
-
-    xor x16, x1, x2        # x16 = x1 ^ x2
-
-    sll x17, x1, x3        # x17 = x1 << x3[4:0]
-
-    srl x18, x1, x3        # x18 = x1 >> x3[4:0]
-
-    sra x19, x1, x3        # x19 = x1 >> x3[4:0]
-
-ori x20, x0, 10
-ori x21, x0, 10
-ori x22, x0, 10
-ori x23, x0, 10
-ori x24, x0, 10
-
+    .end                    # 程式結束
