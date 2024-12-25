@@ -104,64 +104,8 @@ void Vtest_top::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                              >> 0xcU))),3);
             tracep->chgCData(oldp+48,((0x7fU & (vlSymsp->TOP__test_top.__PVT__id_exe_inst_o 
                                                 >> 0x19U))),7);
-            tracep->chgIData(oldp+49,(((0x63U == (0x7fU 
-                                                  & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o))
-                                        ? ((0x4000U 
-                                            & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                            ? ((0x2000U 
-                                                & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                ? (
-                                                   (0x1000U 
-                                                    & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                    ? 
-                                                   (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                    + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm)
-                                                    : 
-                                                   (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                    + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm))
-                                                : (
-                                                   (0x1000U 
-                                                    & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                    ? 
-                                                   (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                    + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm)
-                                                    : 
-                                                   (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                    + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm)))
-                                            : ((0x2000U 
-                                                & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                ? 0U
-                                                : (
-                                                   (0x1000U 
-                                                    & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                    ? 
-                                                   (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                    + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm)
-                                                    : 
-                                                   (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                    + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm))))
-                                        : 0U)),32);
-            tracep->chgBit(oldp+50,(((0x63U == (0x7fU 
-                                                & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)) 
-                                     & ((0x4000U & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                         ? ((0x2000U 
-                                             & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                             ? ((0x1000U 
-                                                 & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                 ? (IData)(vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__op1_ge_op2_unsigned)
-                                                 : 
-                                                (~ (IData)(vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__op1_ge_op2_unsigned)))
-                                             : ((0x1000U 
-                                                 & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                 ? (IData)(vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__op1_ge_op2_signed)
-                                                 : 
-                                                (~ (IData)(vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__op1_ge_op2_signed))))
-                                         : ((~ (vlSymsp->TOP__test_top.__PVT__id_exe_inst_o 
-                                                >> 0xdU)) 
-                                            & ((0x1000U 
-                                                & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                ? (~ (IData)(vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__op1_eq_op2))
-                                                : (IData)(vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__op1_eq_op2)))))));
+            tracep->chgIData(oldp+49,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__b_jump_addr_o),32);
+            tracep->chgBit(oldp+50,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__b_jump_enable_o));
             tracep->chgBit(oldp+51,(VL_GTES_III(1,32,32, vlSymsp->TOP__test_top.__PVT__id_exe_op1_o, vlSymsp->TOP__test_top.__PVT__id_exe_op2_o)));
             tracep->chgBit(oldp+52,((vlSymsp->TOP__test_top.__PVT__id_exe_op1_o 
                                      >= vlSymsp->TOP__test_top.__PVT__id_exe_op2_o)));
@@ -197,51 +141,65 @@ void Vtest_top::traceChgSub0(void* userp, VerilatedVcd* tracep) {
             tracep->chgBit(oldp+60,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__op1_ge_op2_signed));
             tracep->chgBit(oldp+61,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__op1_ge_op2_unsigned));
             tracep->chgIData(oldp+62,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm),32);
-            tracep->chgCData(oldp+63,((3U & vlSymsp->TOP__test_top.__PVT__exe_mem_mem_addr_o)),2);
-            tracep->chgIData(oldp+64,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[0]),32);
-            tracep->chgIData(oldp+65,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[1]),32);
-            tracep->chgIData(oldp+66,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[2]),32);
-            tracep->chgIData(oldp+67,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[3]),32);
-            tracep->chgIData(oldp+68,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[4]),32);
-            tracep->chgIData(oldp+69,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[5]),32);
-            tracep->chgIData(oldp+70,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[6]),32);
-            tracep->chgIData(oldp+71,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[7]),32);
-            tracep->chgIData(oldp+72,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[8]),32);
-            tracep->chgIData(oldp+73,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[9]),32);
-            tracep->chgIData(oldp+74,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[10]),32);
-            tracep->chgIData(oldp+75,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[11]),32);
-            tracep->chgIData(oldp+76,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[12]),32);
-            tracep->chgIData(oldp+77,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[13]),32);
-            tracep->chgIData(oldp+78,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[14]),32);
-            tracep->chgIData(oldp+79,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[15]),32);
-            tracep->chgIData(oldp+80,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[16]),32);
-            tracep->chgIData(oldp+81,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[17]),32);
-            tracep->chgIData(oldp+82,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[18]),32);
-            tracep->chgIData(oldp+83,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[19]),32);
-            tracep->chgIData(oldp+84,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[20]),32);
-            tracep->chgIData(oldp+85,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[21]),32);
-            tracep->chgIData(oldp+86,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[22]),32);
-            tracep->chgIData(oldp+87,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[23]),32);
-            tracep->chgIData(oldp+88,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[24]),32);
-            tracep->chgIData(oldp+89,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[25]),32);
-            tracep->chgIData(oldp+90,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[26]),32);
-            tracep->chgIData(oldp+91,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[27]),32);
-            tracep->chgIData(oldp+92,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[28]),32);
-            tracep->chgIData(oldp+93,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[29]),32);
-            tracep->chgIData(oldp+94,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[30]),32);
-            tracep->chgIData(oldp+95,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[31]),32);
-            tracep->chgIData(oldp+96,((0x1ffffcU & vlSymsp->TOP__test_top.__PVT__pc_wire)),21);
+            tracep->chgIData(oldp+63,(((0xfff00000U 
+                                        & ((- (IData)(
+                                                      (1U 
+                                                       & (vlSymsp->TOP__test_top.__PVT__id_exe_inst_o 
+                                                          >> 0x1fU)))) 
+                                           << 0x14U)) 
+                                       | ((0xff000U 
+                                           & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o) 
+                                          | ((0x800U 
+                                              & (vlSymsp->TOP__test_top.__PVT__id_exe_inst_o 
+                                                 >> 9U)) 
+                                             | (0x7feU 
+                                                & (vlSymsp->TOP__test_top.__PVT__id_exe_inst_o 
+                                                   >> 0x14U)))))),32);
+            tracep->chgCData(oldp+64,((3U & vlSymsp->TOP__test_top.__PVT__exe_mem_mem_addr_o)),2);
+            tracep->chgIData(oldp+65,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[0]),32);
+            tracep->chgIData(oldp+66,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[1]),32);
+            tracep->chgIData(oldp+67,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[2]),32);
+            tracep->chgIData(oldp+68,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[3]),32);
+            tracep->chgIData(oldp+69,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[4]),32);
+            tracep->chgIData(oldp+70,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[5]),32);
+            tracep->chgIData(oldp+71,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[6]),32);
+            tracep->chgIData(oldp+72,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[7]),32);
+            tracep->chgIData(oldp+73,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[8]),32);
+            tracep->chgIData(oldp+74,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[9]),32);
+            tracep->chgIData(oldp+75,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[10]),32);
+            tracep->chgIData(oldp+76,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[11]),32);
+            tracep->chgIData(oldp+77,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[12]),32);
+            tracep->chgIData(oldp+78,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[13]),32);
+            tracep->chgIData(oldp+79,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[14]),32);
+            tracep->chgIData(oldp+80,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[15]),32);
+            tracep->chgIData(oldp+81,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[16]),32);
+            tracep->chgIData(oldp+82,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[17]),32);
+            tracep->chgIData(oldp+83,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[18]),32);
+            tracep->chgIData(oldp+84,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[19]),32);
+            tracep->chgIData(oldp+85,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[20]),32);
+            tracep->chgIData(oldp+86,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[21]),32);
+            tracep->chgIData(oldp+87,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[22]),32);
+            tracep->chgIData(oldp+88,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[23]),32);
+            tracep->chgIData(oldp+89,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[24]),32);
+            tracep->chgIData(oldp+90,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[25]),32);
+            tracep->chgIData(oldp+91,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[26]),32);
+            tracep->chgIData(oldp+92,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[27]),32);
+            tracep->chgIData(oldp+93,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[28]),32);
+            tracep->chgIData(oldp+94,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[29]),32);
+            tracep->chgIData(oldp+95,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[30]),32);
+            tracep->chgIData(oldp+96,(vlSymsp->TOP__test_top__regfile0.__PVT__regs[31]),32);
+            tracep->chgIData(oldp+97,((0x1ffffcU & vlSymsp->TOP__test_top.__PVT__pc_wire)),21);
         }
         if (VL_UNLIKELY(vlTOPp->__Vm_traceActivity[2U])) {
-            tracep->chgIData(oldp+97,(vlSymsp->TOP__test_top__data_ram0.__PVT__data_o),32);
-            tracep->chgBit(oldp+98,(vlSymsp->TOP__test_top.__PVT__exe_jump_enable_o));
-            tracep->chgCData(oldp+99,(vlSymsp->TOP__test_top.__PVT__ctrl_stall_o),6);
-            tracep->chgCData(oldp+100,(vlSymsp->TOP__test_top.__PVT__id_reg1_addr_o),5);
-            tracep->chgCData(oldp+101,(vlSymsp->TOP__test_top.__PVT__id_reg2_addr_o),5);
-            tracep->chgBit(oldp+102,(vlSymsp->TOP__test_top.__PVT__id_reg1_re_o));
-            tracep->chgBit(oldp+103,(vlSymsp->TOP__test_top.__PVT__id_reg2_re_o));
-            tracep->chgIData(oldp+104,(vlSymsp->TOP__test_top.__PVT__id_inst_o),32);
-            tracep->chgIData(oldp+105,(((((IData)(vlSymsp->TOP__test_top.__PVT__id_reg1_re_o) 
+            tracep->chgIData(oldp+98,(vlSymsp->TOP__test_top__data_ram0.__PVT__data_o),32);
+            tracep->chgBit(oldp+99,(vlSymsp->TOP__test_top.__PVT__exe_jump_enable_o));
+            tracep->chgCData(oldp+100,(vlSymsp->TOP__test_top.__PVT__ctrl_stall_o),6);
+            tracep->chgCData(oldp+101,(vlSymsp->TOP__test_top.__PVT__id_reg1_addr_o),5);
+            tracep->chgCData(oldp+102,(vlSymsp->TOP__test_top.__PVT__id_reg2_addr_o),5);
+            tracep->chgBit(oldp+103,(vlSymsp->TOP__test_top.__PVT__id_reg1_re_o));
+            tracep->chgBit(oldp+104,(vlSymsp->TOP__test_top.__PVT__id_reg2_re_o));
+            tracep->chgIData(oldp+105,(vlSymsp->TOP__test_top.__PVT__id_inst_o),32);
+            tracep->chgIData(oldp+106,(((((IData)(vlSymsp->TOP__test_top.__PVT__id_reg1_re_o) 
                                           & (IData)(vlSymsp->TOP__test_top.__PVT__exe_reg_we_o)) 
                                          & ((IData)(vlSymsp->TOP__test_top.__PVT__exe_reg_waddr_o) 
                                             == (IData)(vlSymsp->TOP__test_top.__PVT__id_reg1_addr_o)))
@@ -256,7 +214,7 @@ void Vtest_top::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                               ? vlSymsp->TOP__test_top.__PVT__mem_reg_wdata_o
                                               : 0U)
                                           : vlSymsp->TOP__test_top.__PVT__id0__DOT__op1_o_final))),32);
-            tracep->chgIData(oldp+106,(((((IData)(vlSymsp->TOP__test_top.__PVT__id_reg2_re_o) 
+            tracep->chgIData(oldp+107,(((((IData)(vlSymsp->TOP__test_top.__PVT__id_reg2_re_o) 
                                           & (IData)(vlSymsp->TOP__test_top.__PVT__exe_reg_we_o)) 
                                          & ((IData)(vlSymsp->TOP__test_top.__PVT__exe_reg_waddr_o) 
                                             == (IData)(vlSymsp->TOP__test_top.__PVT__id_reg2_addr_o)))
@@ -271,36 +229,36 @@ void Vtest_top::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                               ? vlSymsp->TOP__test_top.__PVT__mem_reg_wdata_o
                                               : 0U)
                                           : vlSymsp->TOP__test_top.__PVT__id0__DOT__op2_o_final))),32);
-            tracep->chgBit(oldp+107,(vlSymsp->TOP__test_top.__PVT__id_reg_we_o));
-            tracep->chgCData(oldp+108,(vlSymsp->TOP__test_top.__PVT__id_reg_waddr_o),5);
-            tracep->chgCData(oldp+109,(vlSymsp->TOP__test_top.__PVT__exe_reg_waddr_o),5);
-            tracep->chgBit(oldp+110,(vlSymsp->TOP__test_top.__PVT__exe_reg_we_o));
-            tracep->chgIData(oldp+111,(vlSymsp->TOP__test_top.__PVT__exe_reg_wdata_o),32);
-            tracep->chgCData(oldp+112,(vlSymsp->TOP__test_top.__PVT__mem_reg_waddr_o),5);
-            tracep->chgBit(oldp+113,(vlSymsp->TOP__test_top.__PVT__mem_reg_we_o));
-            tracep->chgIData(oldp+114,(vlSymsp->TOP__test_top.__PVT__mem_reg_wdata_o),32);
-            tracep->chgIData(oldp+115,(vlSymsp->TOP__test_top.__PVT__mem_mem_addr_o),32);
-            tracep->chgBit(oldp+116,(vlSymsp->TOP__test_top.__PVT__mem_mem_we_o));
-            tracep->chgIData(oldp+117,(vlSymsp->TOP__test_top.__PVT__mem_mem_data_o),32);
-            tracep->chgIData(oldp+118,(vlSymsp->TOP__test_top__regfile0.__PVT__rdata1_o),32);
-            tracep->chgIData(oldp+119,(vlSymsp->TOP__test_top__regfile0.__PVT__rdata2_o),32);
-            tracep->chgBit(oldp+120,(vlSymsp->TOP__test_top.__PVT__mem_ram_ce_o));
-            tracep->chgIData(oldp+121,(vlSymsp->TOP__test_top.__PVT__id0__DOT__op1_o_final),32);
-            tracep->chgIData(oldp+122,(vlSymsp->TOP__test_top.__PVT__id0__DOT__op2_o_final),32);
-            tracep->chgIData(oldp+123,(vlSymsp->TOP__test_top.__PVT__id0__DOT__i_op1_o),32);
-            tracep->chgCData(oldp+124,((0x7fU & vlSymsp->TOP__test_top.__PVT__id_inst_o)),7);
-            tracep->chgIData(oldp+125,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__i_reg_wdata_o),32);
-            tracep->chgIData(oldp+126,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__r_reg_wdata_o),32);
-            tracep->chgBit(oldp+127,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_reg_we_o));
-            tracep->chgIData(oldp+128,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_mem_data_o),32);
-            tracep->chgIData(oldp+129,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_mem_addr_o),32);
-            tracep->chgBit(oldp+130,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_mem_we_o));
-            tracep->chgCData(oldp+131,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_mem_op_o),4);
-            tracep->chgIData(oldp+132,((0x1ffffcU & vlSymsp->TOP__test_top.__PVT__mem_mem_addr_o)),21);
+            tracep->chgBit(oldp+108,(vlSymsp->TOP__test_top.__PVT__id_reg_we_o));
+            tracep->chgCData(oldp+109,(vlSymsp->TOP__test_top.__PVT__id_reg_waddr_o),5);
+            tracep->chgCData(oldp+110,(vlSymsp->TOP__test_top.__PVT__exe_reg_waddr_o),5);
+            tracep->chgBit(oldp+111,(vlSymsp->TOP__test_top.__PVT__exe_reg_we_o));
+            tracep->chgIData(oldp+112,(vlSymsp->TOP__test_top.__PVT__exe_reg_wdata_o),32);
+            tracep->chgCData(oldp+113,(vlSymsp->TOP__test_top.__PVT__mem_reg_waddr_o),5);
+            tracep->chgBit(oldp+114,(vlSymsp->TOP__test_top.__PVT__mem_reg_we_o));
+            tracep->chgIData(oldp+115,(vlSymsp->TOP__test_top.__PVT__mem_reg_wdata_o),32);
+            tracep->chgIData(oldp+116,(vlSymsp->TOP__test_top.__PVT__mem_mem_addr_o),32);
+            tracep->chgBit(oldp+117,(vlSymsp->TOP__test_top.__PVT__mem_mem_we_o));
+            tracep->chgIData(oldp+118,(vlSymsp->TOP__test_top.__PVT__mem_mem_data_o),32);
+            tracep->chgIData(oldp+119,(vlSymsp->TOP__test_top__regfile0.__PVT__rdata1_o),32);
+            tracep->chgIData(oldp+120,(vlSymsp->TOP__test_top__regfile0.__PVT__rdata2_o),32);
+            tracep->chgBit(oldp+121,(vlSymsp->TOP__test_top.__PVT__mem_ram_ce_o));
+            tracep->chgIData(oldp+122,(vlSymsp->TOP__test_top.__PVT__id0__DOT__op1_o_final),32);
+            tracep->chgIData(oldp+123,(vlSymsp->TOP__test_top.__PVT__id0__DOT__op2_o_final),32);
+            tracep->chgIData(oldp+124,(vlSymsp->TOP__test_top.__PVT__id0__DOT__i_op1_o),32);
+            tracep->chgCData(oldp+125,((0x7fU & vlSymsp->TOP__test_top.__PVT__id_inst_o)),7);
+            tracep->chgIData(oldp+126,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__i_reg_wdata_o),32);
+            tracep->chgIData(oldp+127,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__r_reg_wdata_o),32);
+            tracep->chgBit(oldp+128,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_reg_we_o));
+            tracep->chgIData(oldp+129,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_mem_data_o),32);
+            tracep->chgIData(oldp+130,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_mem_addr_o),32);
+            tracep->chgBit(oldp+131,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_mem_we_o));
+            tracep->chgCData(oldp+132,(vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_mem_op_o),4);
+            tracep->chgIData(oldp+133,((0x1ffffcU & vlSymsp->TOP__test_top.__PVT__mem_mem_addr_o)),21);
         }
-        tracep->chgBit(oldp+133,(vlTOPp->rst_i));
-        tracep->chgBit(oldp+134,(vlTOPp->clk_i));
-        tracep->chgIData(oldp+135,(((IData)(vlSymsp->TOP__test_top.__PVT__ce_wire)
+        tracep->chgBit(oldp+134,(vlTOPp->rst_i));
+        tracep->chgBit(oldp+135,(vlTOPp->clk_i));
+        tracep->chgIData(oldp+136,(((IData)(vlSymsp->TOP__test_top.__PVT__ce_wire)
                                      ? ((vlSymsp->TOP__test_top__data_ram0.__PVT__mem
                                          [(0x1ffffcU 
                                            & vlSymsp->TOP__test_top.__PVT__pc_wire)] 
@@ -326,7 +284,7 @@ void Vtest_top::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                                    (0x1ffffcU 
                                                     & vlSymsp->TOP__test_top.__PVT__pc_wire)))])))
                                      : 0U)),32);
-        tracep->chgIData(oldp+136,(((IData)(vlSymsp->TOP__test_top.__PVT__exe_jump_enable_o)
+        tracep->chgIData(oldp+137,(((IData)(vlSymsp->TOP__test_top.__PVT__exe_jump_enable_o)
                                      ? ((IData)(vlTOPp->rst_i)
                                          ? 0U : ((0x40U 
                                                   & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
@@ -340,66 +298,47 @@ void Vtest_top::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                                     : 
                                                    ((8U 
                                                      & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                     ? 0U
+                                                     ? 
+                                                    ((4U 
+                                                      & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
+                                                      ? 
+                                                     ((2U 
+                                                       & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
+                                                        ? vlSymsp->TOP__test_top.__PVT__exe0__DOT__b_jump_addr_o
+                                                        : 0U)
+                                                       : 0U)
+                                                      : 0U)
                                                      : 
                                                     ((4U 
                                                       & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                      ? 0U
-                                                      : 
+                                                      ? 
                                                      ((2U 
                                                        & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
                                                        ? 
                                                       ((1U 
                                                         & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
                                                         ? 
-                                                       ((0x63U 
-                                                         == 
-                                                         (0x7fU 
-                                                          & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o))
-                                                         ? 
-                                                        ((0x4000U 
-                                                          & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                          ? 
-                                                         ((0x2000U 
-                                                           & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                           ? 
-                                                          ((0x1000U 
-                                                            & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                            ? 
-                                                           (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                            + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm)
-                                                            : 
-                                                           (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                            + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm))
-                                                           : 
-                                                          ((0x1000U 
-                                                            & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                            ? 
-                                                           (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                            + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm)
-                                                            : 
-                                                           (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                            + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm)))
-                                                          : 
-                                                         ((0x2000U 
-                                                           & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                           ? 0U
-                                                           : 
-                                                          ((0x1000U 
-                                                            & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                            ? 
-                                                           (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                            + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm)
-                                                            : 
-                                                           (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                            + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm))))
-                                                         : 0U)
+                                                       (0xfffffffeU 
+                                                        & (vlSymsp->TOP__test_top.__PVT__exe0__DOT__b_jump_addr_o 
+                                                           + vlSymsp->TOP__test_top.__PVT__id_exe_op1_o))
+                                                        : 0U)
+                                                       : 0U)
+                                                      : 
+                                                     ((2U 
+                                                       & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
+                                                        ? vlSymsp->TOP__test_top.__PVT__exe0__DOT__b_jump_addr_o
                                                         : 0U)
                                                        : 0U))))
                                                    : 0U)
                                                   : 0U))
                                      : 0U)),32);
-        tracep->chgIData(oldp+137,(((IData)(vlTOPp->rst_i)
+        tracep->chgIData(oldp+138,(((IData)(vlTOPp->rst_i)
                                      ? 0U : ((0x40U 
                                               & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
                                               ? 0U : 
@@ -445,7 +384,7 @@ void Vtest_top::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                                        ? vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_mem_addr_o
                                                        : 0U)
                                                       : 0U)))))))),32);
-        tracep->chgBit(oldp+138,(((~ (IData)(vlTOPp->rst_i)) 
+        tracep->chgBit(oldp+139,(((~ (IData)(vlTOPp->rst_i)) 
                                   & ((~ (vlSymsp->TOP__test_top.__PVT__id_exe_inst_o 
                                          >> 6U)) & 
                                      ((0x20U & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
@@ -471,7 +410,7 @@ void Vtest_top::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                                     >> 1U) 
                                                    & (vlSymsp->TOP__test_top.__PVT__id_exe_inst_o 
                                                       & (IData)(vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_mem_we_o)))))))))));
-        tracep->chgIData(oldp+139,(((IData)(vlTOPp->rst_i)
+        tracep->chgIData(oldp+140,(((IData)(vlTOPp->rst_i)
                                      ? 0U : ((0x40U 
                                               & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
                                               ? 0U : 
@@ -517,7 +456,7 @@ void Vtest_top::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                                        ? vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_mem_data_o
                                                        : 0U)
                                                       : 0U)))))))),32);
-        tracep->chgCData(oldp+140,(((IData)(vlTOPp->rst_i)
+        tracep->chgCData(oldp+141,(((IData)(vlTOPp->rst_i)
                                      ? 0U : ((0x40U 
                                               & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
                                               ? 0U : 
@@ -563,7 +502,7 @@ void Vtest_top::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                                        ? (IData)(vlSymsp->TOP__test_top.__PVT__exe0__DOT__s_mem_op_o)
                                                        : 0U)
                                                       : 0U)))))))),4);
-        tracep->chgIData(oldp+141,(((IData)(vlTOPp->rst_i)
+        tracep->chgIData(oldp+142,(((IData)(vlTOPp->rst_i)
                                      ? 0U : ((0x40U 
                                               & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
                                               ? ((0x20U 
@@ -575,73 +514,54 @@ void Vtest_top::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                                    : 
                                                   ((8U 
                                                     & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                    ? 0U
+                                                    ? 
+                                                   ((4U 
+                                                     & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
+                                                     ? 
+                                                    ((2U 
+                                                      & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
+                                                      ? 
+                                                     ((1U 
+                                                       & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
+                                                       ? vlSymsp->TOP__test_top.__PVT__exe0__DOT__b_jump_addr_o
+                                                       : 0U)
+                                                      : 0U)
+                                                     : 0U)
                                                     : 
                                                    ((4U 
                                                      & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                     ? 0U
-                                                     : 
+                                                     ? 
                                                     ((2U 
                                                       & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
                                                       ? 
                                                      ((1U 
                                                        & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
                                                        ? 
-                                                      ((0x63U 
-                                                        == 
-                                                        (0x7fU 
-                                                         & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o))
-                                                        ? 
-                                                       ((0x4000U 
-                                                         & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                         ? 
-                                                        ((0x2000U 
-                                                          & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                          ? 
-                                                         ((0x1000U 
-                                                           & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                           ? 
-                                                          (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                           + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm)
-                                                           : 
-                                                          (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                           + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm))
-                                                          : 
-                                                         ((0x1000U 
-                                                           & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                           ? 
-                                                          (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                           + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm)
-                                                           : 
-                                                          (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                           + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm)))
-                                                         : 
-                                                        ((0x2000U 
-                                                          & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                          ? 0U
-                                                          : 
-                                                         ((0x1000U 
-                                                           & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
-                                                           ? 
-                                                          (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                           + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm)
-                                                           : 
-                                                          (vlSymsp->TOP__test_top.__PVT__id_exe_inst_addr_o 
-                                                           + vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm))))
-                                                        : 0U)
+                                                      (0xfffffffeU 
+                                                       & (vlSymsp->TOP__test_top.__PVT__exe0__DOT__b_jump_addr_o 
+                                                          + vlSymsp->TOP__test_top.__PVT__id_exe_op1_o))
+                                                       : 0U)
+                                                      : 0U)
+                                                     : 
+                                                    ((2U 
+                                                      & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
+                                                      ? 
+                                                     ((1U 
+                                                       & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)
+                                                       ? vlSymsp->TOP__test_top.__PVT__exe0__DOT__b_jump_addr_o
                                                        : 0U)
                                                       : 0U))))
                                                   : 0U)
                                               : 0U))),32);
-        tracep->chgIData(oldp+142,((((IData)(vlSymsp->TOP__test_top.__PVT__id0__DOT__inst_type_r__DOT__isType_r) 
+        tracep->chgIData(oldp+143,((((IData)(vlSymsp->TOP__test_top.__PVT__id0__DOT__inst_type_r__DOT__isType_r) 
                                      | (IData)(vlSymsp->TOP__test_top.__PVT__id0__DOT__inst_type_r__DOT__isType_m))
                                      ? vlSymsp->TOP__test_top__regfile0.__PVT__rdata1_o
                                      : 0U)),32);
-        tracep->chgIData(oldp+143,((((IData)(vlSymsp->TOP__test_top.__PVT__id0__DOT__inst_type_r__DOT__isType_r) 
+        tracep->chgIData(oldp+144,((((IData)(vlSymsp->TOP__test_top.__PVT__id0__DOT__inst_type_r__DOT__isType_r) 
                                      | (IData)(vlSymsp->TOP__test_top.__PVT__id0__DOT__inst_type_r__DOT__isType_m))
                                      ? vlSymsp->TOP__test_top__regfile0.__PVT__rdata2_o
                                      : 0U)),32);
-        tracep->chgBit(oldp+144,(((~ ((IData)(vlTOPp->rst_i) 
+        tracep->chgBit(oldp+145,(((~ ((IData)(vlTOPp->rst_i) 
                                       | (0x13U != (0x7fU 
                                                    & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)))) 
                                   & ((0x13U == (0x7fU 
@@ -670,7 +590,7 @@ void Vtest_top::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                                   (0x7fU 
                                                    & (vlSymsp->TOP__test_top.__PVT__id_exe_inst_o 
                                                       >> 0x19U))))))))));
-        tracep->chgBit(oldp+145,((1U & ((~ ((IData)(vlTOPp->rst_i) 
+        tracep->chgBit(oldp+146,((1U & ((~ ((IData)(vlTOPp->rst_i) 
                                             | (~ (IData)(vlSymsp->TOP__test_top.__PVT__exe0__DOT__exe_type_r0__DOT__isType_r)))) 
                                         & ((0x4000U 
                                             & vlSymsp->TOP__test_top.__PVT__id_exe_inst_o)

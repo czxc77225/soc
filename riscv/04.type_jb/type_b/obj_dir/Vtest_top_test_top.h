@@ -71,6 +71,7 @@ VL_MODULE(Vtest_top_test_top) {
         CData/*0:0*/ __PVT__exe0__DOT__s_reg_we_o;
         CData/*0:0*/ __PVT__exe0__DOT__s_mem_we_o;
         CData/*3:0*/ __PVT__exe0__DOT__s_mem_op_o;
+        CData/*0:0*/ __PVT__exe0__DOT__b_jump_enable_o;
         CData/*0:0*/ __PVT__exe0__DOT__exe_type_r0__DOT__isType_r;
         CData/*0:0*/ __PVT__exe0__DOT__exe_type_b_j0__DOT__op1_eq_op2;
         CData/*0:0*/ __PVT__exe0__DOT__exe_type_b_j0__DOT__op1_ge_op2_signed;
@@ -94,13 +95,14 @@ VL_MODULE(Vtest_top_test_top) {
         IData/*31:0*/ __PVT__id0__DOT__op1_o_final;
         IData/*31:0*/ __PVT__id0__DOT__op2_o_final;
         IData/*31:0*/ __PVT__id0__DOT__i_op1_o;
-        IData/*31:0*/ __PVT__id0__DOT__i_op2_o;
     };
     struct {
+        IData/*31:0*/ __PVT__id0__DOT__i_op2_o;
         IData/*31:0*/ __PVT__exe0__DOT__i_reg_wdata_o;
         IData/*31:0*/ __PVT__exe0__DOT__r_reg_wdata_o;
         IData/*31:0*/ __PVT__exe0__DOT__s_mem_data_o;
         IData/*31:0*/ __PVT__exe0__DOT__s_mem_addr_o;
+        IData/*31:0*/ __PVT__exe0__DOT__b_jump_addr_o;
         IData/*31:0*/ __PVT__exe0__DOT__exe_type_b_j0__DOT__b_imm;
     };
     

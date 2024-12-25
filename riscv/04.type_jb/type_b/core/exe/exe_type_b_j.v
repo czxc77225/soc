@@ -23,7 +23,9 @@ module exe_type_b_j(
     wire[`DATA_WIDTH-1:0] pc;
     assign pc = inst_addr_i;  
     wire[`DATA_WIDTH-1:0] b_imm;
+    wire[`DATA_WIDTH-1:0] jal_imm;
     assign b_imm = {{20{inst_i[31]}}, inst_i[7], inst_i[30:25], inst_i[11:8], 1'b0};
+    assign jal_imm = {{12{inst_i[31]}}, inst_i[19:12], inst_i[20], inst_i[30:21], 1'b0};
 
     always @(*) begin
         case(opcode) 
@@ -58,6 +60,14 @@ module exe_type_b_j(
                 jump_enable_o = 1'b0;
             end
             endcase
+        end
+        `INST_TYPE_JAL:begin
+            jump_addr_o = pc + jal_imm;
+            jump_enable_o = 1'b1;
+        end
+        `INST_TYPE_JALR:begin
+            jump_addr_o = {{20{inst_i[31]}}, inst_i[31:20]};
+            jump_enable_o = 1'b1;
         end
         default:
         begin

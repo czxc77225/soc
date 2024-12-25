@@ -155,6 +155,28 @@ module exe(
                     jump_addr_o =  b_jump_addr_o;
                     jump_enable_o = b_jump_enable_o;
                 end
+                `INST_TYPE_JAL:begin
+                    reg_waddr_o = reg_waddr_i;
+                    reg_wdata_o = inst_addr_i+4;
+                    reg_we_o = `WRITE_ENABLE;
+                    mem_we_o = `WRITE_DISABLE;
+                    mem_addr_o = `ZERO;
+                    mem_data_o = `ZERO;
+                    mem_op_o = `MEM_NOP;
+                    jump_addr_o =  b_jump_addr_o;
+                    jump_enable_o = b_jump_enable_o;
+                end
+                `INST_TYPE_JALR:begin
+                    reg_waddr_o = reg_waddr_i;
+                    reg_wdata_o = inst_addr_i+4; 
+                    reg_we_o = `WRITE_ENABLE;
+                    mem_we_o = `WRITE_DISABLE;
+                    mem_addr_o = `ZERO;
+                    mem_data_o = `ZERO;
+                    mem_op_o = `MEM_NOP;
+                    jump_addr_o =  (b_jump_addr_o + op1_i) & {{31{1'b1}},1'b0};
+                    jump_enable_o = b_jump_enable_o;
+                end
                 default:begin
                     reg_waddr_o = `ZERO_REG;
                     reg_wdata_o = `ZERO;

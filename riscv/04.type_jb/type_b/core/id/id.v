@@ -199,6 +199,28 @@ module id(
                     op2_o_final = reg2_rdata_i;
                     reg_we_o = `WRITE_DISABLE;
                 end
+                `INST_TYPE_JAL:begin
+                    inst_o = inst_i;
+                    reg1_raddr_o = rs1;
+                    reg2_raddr_o = rs2;
+                    reg1_re_o = `READ_DISABLE;
+                    reg2_re_o = `READ_DISABLE;
+                    op1_o_final = `ZERO;
+                    op2_o_final = `ZERO;
+                    reg_we_o = `WRITE_ENABLE;
+                    reg_waddr_o = rd;
+                end
+                `INST_TYPE_JALR:begin
+                    inst_o = inst_i;
+                    reg1_raddr_o = rs1;
+                    reg2_raddr_o = rs2;
+                    reg1_re_o = `READ_ENABLE;
+                    reg2_re_o = `READ_DISABLE;
+                    op1_o_final = reg1_rdata_i;
+                    op2_o_final = `ZERO;
+                    reg_we_o = `WRITE_ENABLE;
+                    reg_waddr_o = rd;
+                end
                 default:begin
                     inst_o = `NOP;
                     reg1_raddr_o = `ZERO_REG;
