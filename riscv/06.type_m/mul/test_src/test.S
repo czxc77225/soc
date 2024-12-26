@@ -4,31 +4,64 @@
 _start:
   .global _start
 
-  /* clear BSS */
-  la x26, start_bbs
-  addi x27, x26, 0x10
-
-  bge x26, x27, zero_loop_end
-
-zero_loop:
-  sw x0, 0(x26)
-  addi x26, x26, 4
-  ble x26, x27, zero_loop
-zero_loop_end:
 
 
-main_entry:
-  /* jump to main program entry point (argc = argv = 0) */
-  addi x10, x0, 0
-  addi x11, x0, 0
-  j   stop
+    ################################################################
+    # 1) 初始化暫存器
+    #    選幾個測試數字放進 x1, x2
+    ################################################################
+    li      x1, 0x13     # x1 = 12345
+    li      x2, 3      # x2 = 6789
 
-  /* If execution ends up here just put the core to sleep */
-sleep_loop:
-  j sleep_loop
+    ################################################################
+    # 2) 乘法指令 (MUL, MULH, MULHSU, MULHU)
+    ################################################################
 
-/* =================================================== [ exceptions ] === */
-/* This section has to be down here, since we have to disable rvc for it  */
+    # (1) MUL x3, x1, x2
+    #     計算 x1*x2 的低 32 bits 結果存入 x3
+    mul     x3, x1, x2
+
+    # (2) MULH x5, x1, x2
+    #     有號數乘法的高 32 bits
+    li      x30, 0xFFFFFFF   
+    li      x31, 0x8000
+    mulh    x29, x30, x31
+
+    # (3) MULHSU x6, x1, x2
+    #     x1 視為有號, x2 視為無號，相乘之高 32 bits
+    mulhsu  x28, x30, x31
+
+    # (4) MULHU x7, x1, x2
+    #     無號數乘法的高 32 bits
+    mulhu   x27, x30, x31
+
+
+    ################################################################
+    # 3) 除法指令 (DIV, DIVU)
+    ################################################################
+
+    # (5) DIV x8, x1, x2
+    #     有號數除法 (x1 / x2)
+    div     x26, x1, x2
+
+    # (6) DIVU x9, x1, x2
+    #     無號數除法 (x1 / x2)，x1, x2 皆視為無號
+    divu    x25, x1, x2
+
+    ################################################################
+    # 4) 取餘數指令 (REM, REMU)
+    ################################################################
+
+    # (7) REM x10, x1, x2
+    #     有號數取餘數 (x1 % x2)
+    rem     x24, x1, x2
+
+    # (8) REMU x11, x1, x2
+    #     無號數取餘數 (x1 % x2)，x1, x2 視為無號
+    remu    x23, x1, x2
+
+
+
 
 
 stop:
@@ -38,4 +71,11 @@ stop:
   sw  x5, 0(x6)
   j  stop
 
-start_bbs:
+
+
+
+
+
+
+
+

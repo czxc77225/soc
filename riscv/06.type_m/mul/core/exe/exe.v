@@ -89,7 +89,7 @@ module exe(
 
     wire m_reg_we_o, mult_div_stall;
     wire[`DATA_WIDTH-1:0] m_reg_wdata_o;
-    exe_type_m exe_type_m0(
+    exe_type_m exe_type_m0( //從這裡做m type指令 包括乘法
         .clk_i(clk_i),
         .rst_i(rst_i),
         .inst_i(inst_i),

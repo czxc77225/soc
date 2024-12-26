@@ -61,7 +61,7 @@ void sim_mem_load_bin(Vtest_top_dpram__R200000_RB15* ram, std::string fn)
     bpfs.seekg(0, std::ios::beg);
     bpfs.read(buf, f_length);
     bpfs.close();
-    //printf("file size: %d\n", f_length);
+    printf("file size: %d\n", f_length);
 
     for(int i=0; i<f_length;i+=4) {
         sim_mem_write(ram, bswap(i),4,(uint8_t*)buf+i);

@@ -66,6 +66,13 @@ int main(int argc,char **argv)
     } else
         printf("PASS\n");
 
+
+    for (int i=0; i<32;i++) {
+        int x = sim_regs_read(top->test_top->regfile0, i);        
+        printf(" x%02d = %08x% --  ", i, x);
+        if (i%4==3) printf("\n");
+    }
+
      top->final();
      tfp->close();
      delete top;

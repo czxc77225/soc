@@ -20,16 +20,16 @@ module exe_type_m(
     wire isType_m;
     wire isType_m = (opcode == `INST_TYPE_R_M) && (funct7 == 7'b0000001);
     
-    reg[`DATA_WIDTH-1:0] a_o, b_o;
-    reg                  mult_req_o, div_req_o, mult_ready_i, div_ready_i;
+    reg[`DATA_WIDTH-1:0] a_o, b_o, div_result;
+    reg                 is_q_operation, mult_req_o, div_req_o, mult_ready_i, div_ready_i;
     reg[`DATA_WIDTH*2-1:0] mult_result_i, div_result_i;
 
-    mul#(.XLEN(`DATA_WIDTH)) mul0(
+    mul#(.XLEN(`DATA_WIDTH)) mul0( //在這裡做乘法
         .clk_i(clk_i),
         .rst_i(rst_i),
         .req_i(mult_req_o),
-        .a_i(a_o),
-        .b_i(b_o),
+        .a_i(a_o),  //填入被乘數
+        .b_i(b_o),  //填入乘數
         .ready_o(mult_ready_i),
         .result_o(mult_result_i)
     );
@@ -41,7 +41,8 @@ module exe_type_m(
         .a_i(a_o),
         .b_i(b_o),
         .ready_o(div_ready_i),
-        .result_o(div_result_i)
+        .is_q_i(is_q_operation), 
+        .result_o(div_result)
     );
 
     assign stall_o = (mult_req_o & ~mult_ready_i)|(div_req_o & ~div_ready_i);    
@@ -49,6 +50,7 @@ module exe_type_m(
 
     wire is_a_neg = op1_i[`DATA_WIDTH-1];
     wire is_b_neg = op2_i[`DATA_WIDTH-1];
+    wire is_b_zero = ~(|op2_i);
     wire signed_adjust = is_a_neg ^ is_b_neg;
     reg[`DATA_WIDTH*2-1:0] invert_result;
     assign invert_result = (mult_req_o)? ~mult_result_i+1 : 64'b0;
@@ -60,12 +62,14 @@ module exe_type_m(
             reg_we_o = `WRITE_DISABLE;
             mult_req_o = 1'b0;
             result = 32'b0;
+            is_q_operation = 1'b0;
         end else begin
             reg_we_o = `WRITE_ENABLE;
             a_o = `ZERO;
             b_o = `ZERO;
             mult_req_o = 1'b0;
             result = 32'b0;
+            is_q_operation = 1'b0;
             case(funct3)
                     `INST_MUL: begin
                         a_o = op1_i;
@@ -91,6 +95,32 @@ module exe_type_m(
                         mult_req_o = 1'b1;
                         result = (is_a_neg)? invert_result[`DATA_WIDTH*2-1:`DATA_WIDTH] : mult_result_i[`DATA_WIDTH*2-1:`DATA_WIDTH];
                     end//ORI
+                    `INST_DIV: begin
+                        a_o = (is_a_neg)? -op1_i : op1_i;
+                        b_o = (is_b_neg)? -op2_i : op2_i;
+                        div_req_o = 1'b1;
+                        result = (is_b_zero)? div_result: (signed_adjust)? -div_result : div_result;
+                        is_q_operation = 1'b1;
+                    end
+                    `INST_DIVU: begin
+                        a_o = op1_i;
+                        b_o = op2_i;
+                        div_req_o = 1'b1;
+                        result = div_result;
+                        is_q_operation = 1'b1;
+                    end
+                    `INST_REMU: begin
+                        a_o = op1_i;
+                        b_o = op2_i;
+                        div_req_o = 1'b1;
+                        result = div_result;
+                    end
+                    `INST_REM: begin
+                        a_o = (is_a_neg)? -op1_i : op1_i;
+                        b_o = (is_b_neg)? -op2_i : op2_i;
+                        div_req_o = 1'b1;
+                        result = (is_b_zero)? div_result: (is_a_neg)? -div_result : div_result;
+                    end
                     default: begin
                     end//default
             endcase
