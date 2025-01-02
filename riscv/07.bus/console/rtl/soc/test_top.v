@@ -9,7 +9,7 @@ module test_top(
 
 );
 
-   localparam int NrDevices = 2;
+   localparam int NrDevices = 3;
    localparam int NrHosts = 1;
    localparam int MemSize = 32'h200000;
    localparam int MemAddrWidth = 21;
@@ -17,6 +17,7 @@ module test_top(
    `define     HOST_CORE_PORT 0
    `define     DEV_RAM        0
    `define     DEV_CONSOLE    1
+   `define     DEV_TIMER      2 // 定義 Timer 設備編號
    
 
     // host and device signals
@@ -42,6 +43,8 @@ module test_top(
     assign cfg_device_addr_mask[`DEV_RAM] = ~32'h1FFFFF; // 2 MB
     assign cfg_device_addr_base[`DEV_CONSOLE] = 32'h200000;
     assign cfg_device_addr_mask[`DEV_CONSOLE] = ~32'hFFFFF; // 1 MB
+    assign cfg_device_addr_base[`DEV_TIMER] = 32'h300000; // Timer 基地址
+    assign cfg_device_addr_mask[`DEV_TIMER] = ~32'h000FFF; // 4 KB
    
     wire halt_from_console;
     assign halt_o = halt_from_console;
@@ -85,6 +88,22 @@ module test_top(
         .wdata_i   (device_wdata[`DEV_CONSOLE]),
         .halt_o    (halt_from_console)
         );
+
+    // Timer 模塊實例化
+    timer #(
+        .DATA_WIDTH(32),
+        .ADDR_WIDTH(32)
+    ) timer0 (
+        .clk_i     (clk_i),
+        .rst_i     (rst_i),
+
+        .req_i     (device_req[`DEV_TIMER]),
+        .we_i      (device_we[`DEV_TIMER]),
+        .addr_i    (device_addr[`DEV_TIMER]),
+        .wdata_i   (device_wdata[`DEV_TIMER]),
+        .rdata_o   (device_rdata[`DEV_TIMER]),
+        .timer_interrupt_o() // 暫不處理中斷信號
+    );
 
 
     // SRAM block for data storage
