@@ -1,21 +1,19 @@
 TOP = test_top
 GTKWAVE = gtkwave
 
-
-V_SRC = ./core/test_top.v
-V_SRC += $(wildcard ./core/if/*.v)
-V_SRC += $(wildcard ./core/id/*.v)
-V_SRC += $(wildcard ./core/exe/*.v)
-V_SRC += $(wildcard ./core/mem/*.v)
-V_SRC += $(wildcard ./core/wb/*.v)
-V_SRC += $(wildcard ./core/device/*.v)
-V_SRC += $(wildcard ./core/ctrl/*.v)
-
-VFLAGS = --cc -trace -Wno-style  # -DRVFI -Wno-IMPLICIT -Wno-WIDTH -Wno-CASEINCOMPLETE
+V_SRC = ./rtl/soc/test_top.v
+V_SRC += ./rtl/core/core_top.v
+V_SRC += $(wildcard ./rtl/core/if/*.v)
+V_SRC += $(wildcard ./rtl/core/id/*.v)
+V_SRC += $(wildcard ./rtl/core/exe/*.v)
+V_SRC += $(wildcard ./rtl/core/mem/*.v)
+V_SRC += $(wildcard ./rtl/core/wb/*.v)
+V_SRC += $(wildcard ./rtl/core/ctrl/*.v)
+V_SRC += $(wildcard ./rtl/device/*.v)
 
 TESTBENCH_SRC = $(wildcard ./tb/*.cpp)
-VTOP = ./core/${TOP}.v
-INC = -Icore/include
+VTOP = ./rtl/soc/${TOP}.v
+INC = -Irtl/core/include
 PROG = test
 PROG_S = $(wildcard ./test_src/*.S)
 
