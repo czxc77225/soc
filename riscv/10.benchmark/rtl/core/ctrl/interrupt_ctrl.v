@@ -122,9 +122,14 @@ module interrupt_ctrl(
     reg exception;
     always @(posedge clk_i) 
         exception <= (|exception_i);
+        
 
     // output generation
     always @ (*)   begin
+
+        //$display("exception_i : %08x \n",exception_i);
+        //$display("exception_i (binary) : %b", exception_i);
+
         case(S)
             RESET: begin
                 interrupt_en_o = 1'b0;
@@ -172,6 +177,7 @@ module interrupt_ctrl(
                 mstatus_ie_set_o = 1'b0;
             end
         endcase
+        //$display("eip %08x\n",eip);
     end
 
 

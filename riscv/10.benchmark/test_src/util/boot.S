@@ -1,110 +1,115 @@
-#include "soc_reg.h"
+    .section .text
+    .align  2
 
-.section .text
-
+    .global  _start
 _start:
-  .global _start
-  /* set all registers to zero */
-  mv  x1, x0
-  mv  x2, x1
-  mv  x3, x1
-  mv  x4, x1
-  mv  x5, x1
-  mv  x6, x1
-  mv  x7, x1
-  mv  x8, x1
-  mv  x9, x1
-  mv x10, x1
-  mv x11, x1
-  mv x12, x1
-  mv x13, x1
-  mv x14, x1
-  mv x15, x1
-  mv x16, x1
-  mv x17, x1
-  mv x18, x1
-  mv x19, x1
-  mv x20, x1
-  mv x21, x1
-  mv x22, x1
-  mv x23, x1
-  mv x24, x1
-  mv x25, x1
-  mv x26, x1
-  mv x27, x1
-  mv x28, x1
-  mv x29, x1
-  mv x30, x1
-  mv x31, x1
+    #-----------------------------------------------------------------
+    # 1) 初始化堆疊 (stack)
+    #-----------------------------------------------------------------
+    la    sp, _stack_start   # 根據你的鏈結腳本提供的符號
 
-  /* stack initilization */
-  la   x2, _stack_start
+    #-----------------------------------------------------------------
+    # 2) 清 bss 區 (可選，看你程式需要)
+    #-----------------------------------------------------------------
+    la    t0, _bss_start
+    la    t1, _bss_end
+bss_clear_loop:
+    bgeu  t0, t1, bss_clear_done
+    sw    zero, 0(t0)
+    addi  t0, t0, 4
+    j     bss_clear_loop
+bss_clear_done:
 
-  /* clear BSS */
-  la x26, _bss_start
-  la x27, _bss_end
+    #-----------------------------------------------------------------
+    # 3) 設定 mtvec => 指向我們的 trap_vector
+    #    - 若使用「Direct Mode (mode=0)」，最低 bit = 0
+    #    - 若使用「Vectored Mode (mode=1)」，最低 bit = 1
+    #  這裡示範 Direct: => t0[0] = 0
+    #-----------------------------------------------------------------
+    la    t0, trap_vector    # 你的中斷/例外處理程式入口標籤
+    # 確保 t0對齊 4 bytes；若你要 vectored mode，也可 or上 1
+    csrw  mtvec, t0
 
-  bge x26, x27, zero_loop_end
+    #-----------------------------------------------------------------
+    # 4) 開啟對應的中斷使能 (mie) 
+    #    - bit7(MTIE) = 1 => 允許Timer中斷
+    #    - bit3(MSIE) = 1 => 允許Software中斷
+    #    - bit11(MEIE)= 1 => 允許External中斷
+    #    (這裡示範只開 Timer中斷)
+    #-----------------------------------------------------------------
+    li    t1, (1 << 7)       # 0x80
+    csrs  mie, t1            # set mie.MTIE=1
 
-zero_loop:
-  sw x0, 0(x26)
-  addi x26, x26, 4
-  ble x26, x27, zero_loop
-zero_loop_end:
+    # 也可以多開 SW/External: e.g.
+    # li    t1, (1 << 7) | (1 << 3) | (1 << 11)
+    # csrs  mie, t1
 
-la      s0, data 
-lbu     a5,-17(s0)
-addi    a5,a5,48
-sb      a5,-17(s0)
+    #-----------------------------------------------------------------
+    # 5) 開啟全域中斷 (mstatus.MIE=1)
+    #    - bit3 = 1 => MIE
+    #-----------------------------------------------------------------
+    li    t1, (1 << 3)       # 0x8
+    csrs  mstatus, t1
 
-main_entry:
-  /* jump to main program entry point (argc = argv = 0) */
-  addi x10, x0, 0
-  addi x11, x0, 0
-  call   main
+    #-----------------------------------------------------------------
+    # 6) 跳到 main (或其他 C 程式入口)
+    #    - 可以把 argc=0, argv=0 之類的初始化
+    #-----------------------------------------------------------------
+    la    a0, 0
+    la    a1, 0
+    la    t0, main
+    jr    t0
 
-  call   sim_halt
+    #================================================================
+    # 這裡放你的 Trap Vector
+    #================================================================
+    .align 4
+trap_vector:
+    #-----------------------------------------------------------------
+    # 1) 讀取 mcause, 判斷是中斷或例外
+    #    若 bit31=1 => 中斷, 低bits 為原因
+    #    若 bit31=0 => 例外, 低bits 為原因
+    #-----------------------------------------------------------------
+    csrr  t0, mcause
+    # 例如判斷是否 0x80000007 => M-mode Timer中斷 
+    li    t1, 0x80000007
+    beq   t0, t1, handle_timer_interrupt
 
-  
-  /* If execution ends up here just put the core to sleep */
-sleep_loop:
-  j sleep_loop
+    #-----------------------------------------------------------------
+    # 其餘例外/中斷處理
+    #-----------------------------------------------------------------
+    j     handle_other_trap
 
-/* =================================================== [ exceptions ] === */
-/* This section has to be down here, since we have to disable rvc for it  */
+handle_timer_interrupt:
+    # 你的定時器中斷服務程式 (ISR)
+    # - 通常會更新 mtimecmp 讓之後定期中斷
+    # - 清 mip.MTIP 或做任何需要的動作
+    # - 然後 mret
 
-data:
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
-  .byte 0x00
+    # 假設你透過 CSR 指令或 memory-mapped CLINT 重設 mtimecmp
+    # [略] ...
+    # 結束時執行 mret
+    mret
 
-  
+handle_other_trap:
+    # 你可以在這裡放 debug info, 或視情況處理 ecall/misaligned等
+    # 最簡單: 進入無窮迴圈
+    j     handle_other_trap
+
+    #================================================================
+    # 你的程式還可以放其他程式碼, 例如 _stack, bss區符號...
+    #================================================================
+
+    .global _stack_start
+    .section .bss
+    .align 4
+_stack_start:
+    # 堆疊的開始（由 link.ld 安排具體地址）
+    .space 4
+
+    .section .bss
+    .align 4
+_bss_start:
+    # ...
+_bss_end:
+

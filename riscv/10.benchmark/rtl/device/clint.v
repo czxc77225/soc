@@ -34,7 +34,7 @@ wire is_time_addr1 = (raddr == TIME_ADDR+16'h4);
 wire is_mtimecmp_addr0 = (raddr == MTIMECMP_BASE);
 wire is_mtimecmp_addr1 = (raddr == MTIMECMP_BASE+16'h4);
 wire is_msip_addr = (raddr == MSIP_BASE);
-//wire alarm = ((mtime_mem[0] & 32'h0000_00FF) == 32'h0);
+wire alarm = ((mtime_mem[0] & 32'h0000_00FF) == 32'h0);
 always @(posedge clk_i)
 begin
     if (rst_i==`RESET_ENABLE)
@@ -59,7 +59,7 @@ begin
         mtime_mem[0] <= mtime_mem[0] + 32'b1;
         mtime_mem[1] <= mtime_mem[1] + {31'b0,carry};
         //if (alarm)
-        //    $display("time %08x%08x,  %08x%08x\n", mtime_mem[1], mtime_mem[0], mtimecmp_mem[1],mtimecmp_mem[0]);
+            //$display("time %08x%08x,  %08x%08x\n", mtime_mem[1], mtime_mem[0], mtimecmp_mem[1],mtimecmp_mem[0]);
     end
 end
 
@@ -81,7 +81,7 @@ begin
     else
         data_o = `ZERO;
     //if (timer_irq_o)
-    // $display("interrupt");
+    //    $display("interrupt");
 
 end
 
