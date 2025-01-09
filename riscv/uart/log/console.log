@@ -1,0 +1,22 @@
+=== Test iteration 1 ===
+Sent via UART0: Hello from UART0!
+UART0 received: UART0 echo test FAIL.
+Sent via UART1: Hello from UART1!
+UART1 received: UART1 echo test FAIL.
+=== Test iteration 1 done ===
+
+=== Test iteration 2 ===
+Sent via UART0: Hello from UART0!
+UART0 received: UART0 echo test FAIL.
+Sent via UART1: Hello from UART1!
+UART1 received: UART1 echo test FAIL.
+=== Test iteration 2 done ===
+
+=== Test iteration 3 ===
+Sent via UART0: Hello from UART0!
+UART0 received: UART0 echo test FAIL.
+Sent via UART1: Hello from UART1!
+UART1 received: UART1 echo test FAIL.
+=== Test iteration 3 done ===
+
+All tests completed!
